@@ -11,7 +11,7 @@ export async function queryCurrent() {
 }
 
 export async function AnnoAccountLogin(params) {
-  return request('http://localhost:5000/currentUser', {
+  return request('http://192.168.100.205:5000/currentUser', {
     method: 'POST',
     body: params,
 
@@ -20,24 +20,24 @@ export async function AnnoAccountLogin(params) {
 
 export async function findUsers() {
 
-  return request('http://localhost:5000/api/user');
+  return request('http://192.168.100.205:5000/api/user');
 }
 
 export async function findCurrent() {
   const user = localStorage.getItem('user_id');
-  return request(`http://localhost:5000/api/currentuser/${(user)}`);
+  return request(`http://192.168.100.205:5000/api/currentuser/${(user)}`);
 
 }
 
 export async function findCurrentMission() {
   const user = localStorage.getItem('user_id');
-  return request(`http://localhost:5000/api/currentmission/${(user)}`);
+  return request(`http://192.168.100.205:5000/api/currentmission/${(user)}`);
 
 }
 
 export async function next() {
   const user = localStorage.getItem('user_id');
-  return request(`http://localhost:5000/api/next/${(user)}`);
+  return request(`http://192.168.100.205:5000/api/next/${(user)}`);
 
 }
 
@@ -48,7 +48,7 @@ export async function beginAnno(missionID) {
     mission: missionID,
   };
   console.log(params)
-  return request(`http://localhost:5000/api/beginAnno`,
+  return request(`http://192.168.100.205:5000/api/beginAnno`,
     {
       method: 'POST',
       body: params,

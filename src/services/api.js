@@ -131,7 +131,7 @@ export async function getFakeCaptcha(mobile) {
 // Myapi
 export async function AnnoAccountLogin(params) {
   console.log(params);
-  return request('http://localhost:5000/api/login/account', {
+  return request('http://192.168.100.205:5000/api/login/account', {
     method: 'POST',
     body: params,
 
@@ -140,14 +140,14 @@ export async function AnnoAccountLogin(params) {
 
 export async function queryMission(params) {
 
-  return request('http://localhost:5000/api/mission', {
+  return request('http://192.168.100.205:5000/api/mission', {
     method: 'POST',
     body: params,
 
   });
 }
 export async function addMission(params) {
-  return request('http://localhost:5000/api/addMission', {
+  return request('http://192.168.100.205:5000/api/addMission', {
     method: 'POST',
     body: params,
 
@@ -155,7 +155,7 @@ export async function addMission(params) {
 }
 
 export async function submitMission(params) {
-  return request('http://localhost:5000/api/submit',{
+  return request('http://192.168.100.205:5000/api/submit',{
     method:'POST',
     body:params,
   })
@@ -163,7 +163,7 @@ export async function submitMission(params) {
 }
 
 export async function addMissionRandom(params) {
-  return request('http://localhost:5000/api/addMissionRandom',{
+  return request('http://192.168.100.205:5000/api/addMissionRandom',{
     method:'POST',
     body:params,
   })
@@ -171,12 +171,12 @@ export async function addMissionRandom(params) {
 }
 export async function fetchMission(params) {
 
-  return request(`http://localhost:5000/api/fetchMission/${(params)}`)
+  return request(`http://192.168.100.205:5000/api/fetchMission/${(params)}`)
 
 }
 export async function Register(params) {
     console.log(params)
-  return request(`http://localhost:5000/api/register`,
+  return request(`http://192.168.100.205:5000/api/register`,
     { method:'POST',
       body:params,}
     )
