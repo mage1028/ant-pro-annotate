@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'dva';
 import Link from 'umi/link';
 import router from 'umi/router';
-import { Form, Input, Button, Select, Row, Col, Popover, Progress } from 'antd';
+import { Form, Input, Button, Select, Row, Col, Popover, Progress,message } from 'antd';
 import styles from './Register.less';
 
 const FormItem = Form.Item;
@@ -73,17 +73,22 @@ class Register extends Component {
     console.log('test',this.props,this.state)
     e.preventDefault();
     const { form, dispatch } = this.props;
+
     form.validateFields({ force: true }, (err, values) => {
       if (!err) {
-        const { prefix } = this.state;
-        console.log(prefix)
         dispatch({
           type: 'register/submit',
           payload: {
             ...values,
-            prefix,
           },
         });
+        const{register}=this.props
+        console.log(register)
+        if (register.status==1){
+        message.success('注册成功')}
+        if (register.status==0){
+          message.error('失败')}
+
       }
     });
   };
@@ -164,8 +169,13 @@ class Register extends Component {
       <div className={styles.main}>
         <h3>注册</h3>
         <Form onSubmit={this.handleSubmit}>
-          <FormItem>
-           <Input size="large" placeholder="用户名" />
+          <FormItem>   {getFieldDecorator('account', {
+            rules: [ {
+              required: true, message: '不能为空',
+            }],
+          })(
+            <Input size="large" placeholder="用户名" />
+          )}
           </FormItem>
           <FormItem help={help}>
             <Popover
@@ -205,7 +215,13 @@ class Register extends Component {
             })(<Input size="large" type="password" placeholder="确认密码" />)}
           </FormItem>
           <FormItem>
-            <Input size="large" placeholder="输入真实姓名" />
+            {getFieldDecorator('name', {
+              rules: [ {
+                required: true, message: '不能为空',
+              }],
+            })(
+              <Input size="large" placeholder="请输入真实姓名" />
+            )}
 
           </FormItem>
           <FormItem>
@@ -219,7 +235,7 @@ class Register extends Component {
             >
               注册
             </Button>
-            <Link className={styles.login} to="/User/Login">
+            <Link className={styles.login} to="/user/login">
               使用已有账户登录
             </Link>
           </FormItem>

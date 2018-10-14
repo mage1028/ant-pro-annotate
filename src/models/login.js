@@ -63,7 +63,9 @@ export default {
     },
 
     * logout(_, { put }) {
+      console.log('开始退出')
       window.localStorage.removeItem('user_id');
+
       yield put({
         type: 'changeLoginStatus',
         payload: {

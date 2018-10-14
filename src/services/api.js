@@ -174,3 +174,11 @@ export async function fetchMission(params) {
   return request(`http://localhost:5000/api/fetchMission/${(params)}`)
 
 }
+export async function Register(params) {
+    console.log(params)
+  return request(`http://localhost:5000/api/register`,
+    { method:'POST',
+      body:params,}
+    )
+
+}

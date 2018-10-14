@@ -9,7 +9,31 @@ export default {
     list: [],
     currentUser: {},
     user: [],
-    currentAccount: {},
+    currentAccount: {
+      currentMission:{
+        isAnno:'已标注',
+        content:null,
+        reason:null,
+        typeAvg:{
+          "政治": 0,
+          "经济": 0,
+          "社会": 0,
+          "教育": 0,
+          "科技": 0,
+          "娱乐": 0,
+          "军事": 0,
+          "健康": 0
+        },
+        timelinessAvg:{
+          "存在时效性": 0,
+          "过时": 0,
+          "与时间无关": 0
+        },
+      },
+
+
+
+    },
     currentMission:{
       typeAvg:{
         "政治": 0,
@@ -61,6 +85,7 @@ export default {
       });
     },
     * fetchCurrentMission(_, { call, put }) {
+
       const response = yield call(findCurrentMission);
       yield put({
         type: 'saveCurrentMission',
@@ -70,8 +95,14 @@ export default {
     * next(_, { call, put }) {
       // 感觉性能不是很好
       yield call(next)
+
+
       const response = yield call(findCurrentMission);
+      console.log(response,'data1')
       const response2 = yield call(findCurrent);
+      console.log(response2,'data2')
+
+
       yield put({
         type: 'saveCurrentAccount',
         payload: response2,

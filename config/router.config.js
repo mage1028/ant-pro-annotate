@@ -15,6 +15,7 @@ export default [
   {
     path: '/annotate',
     component: '../layouts/BasicLayout',
+    authority: ['admin', 'guest'],
     routes: [
       {
         path: '/annotate/index',
@@ -41,6 +42,7 @@ export default [
   {
     path: '/admin',
     component: '../layouts/BasicLayout',
+    authority: ['admin'],
     routes: [
       {
         path: '/admin/index',
@@ -98,9 +100,10 @@ export default [
   // app
 
   {
-    path: '/',
+
     component: '../layouts/BasicLayout',
     Routes: ['src/pages/Authorized'],
+    authority: ['admin','guest'],
     routes: [
 
       // dashboard

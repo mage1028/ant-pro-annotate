@@ -242,7 +242,7 @@ class App extends Component {
 
 
     // const {content,reason}=currentMission
-
+    try{
     return (
       <Layout>
 
@@ -473,10 +473,10 @@ class App extends Component {
         </FooterToolbar>
 
       </Layout>
-    );
+    )
   }
+  catch(e){
+    return(<h3>无任务，请等待分配</h3>)
+
+}}
 }
-
-
-
-
