@@ -52,6 +52,7 @@ export default {
     },
 
     * submitMission({ payload }, { call, put }) {
+
       console.log('post',payload)
       const response = yield call(submitMission, payload);
     },

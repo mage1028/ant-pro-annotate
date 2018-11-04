@@ -84,13 +84,16 @@ class App extends Component {
     const data = this.state;
     data.id = currentMission.id;
     data.userID = localStorage.getItem('user_id');
-
+    if(data.type!=null&&data.time!=null){
     dispatch({
       type: 'mission/submitMission',
       payload: data,
     });
     message.success('提交成功');
-    this.next();
+    this.next();}
+    else{
+      message.error('请选择类型')
+    }
   };
 
   onChange_danger = (value) => {
@@ -150,8 +153,8 @@ class App extends Component {
       {
         content: ' <p> 善意目的（0-0.2）：中立、正面、积极的信息<br>\n' +
           '                        营销炒作、吸引流量（0.2-0.5）：博得眼球、标题党<br>\n' +
-          '                        (4)恶意目的（0.5-0.8）：已知信息为假，带有煽动、阴暗、消极的信息。<br>\n' +
-          '                        (3)制造动乱（0.8-1.0）：引起或欲引起动乱<br></p><br>',
+          '                        恶意目的（0.5-0.8）：已知信息为假，带有煽动、阴暗、消极的信息。<br>\n' +
+          '                       制造动乱（0.8-1.0）：引起或欲引起动乱<br></p><br>',
       },
     );
   };
@@ -168,9 +171,11 @@ class App extends Component {
   showTrust = () => {
     this.setState(
       {
-        content: '<p>完全不可信（0）：反常识、证实为假<br>\n' +
-          '                        假大于真（0-0.3）：带有营销性质等明显目的性、让人怀疑的消息<br>\n' +
-          '                        半真半假（0.3-0.7）：判断不出真假、无明显目的，也不是权威媒体大V发的</p>',
+        content: '  <p>完全不可信（0）：反常识、证实为假</p>\n' +
+          '                                        <p>假大于真（0-0.3）：带有营销性质等明显目的性、让人怀疑的消息</p>\n' +
+          '                                        <p>半真半假（0.3-0.7）：判断不出真假、无明显目的，也不是权威媒体大V发的</p>\n' +
+          '                                        <p>真大于假（0.7-1）：看上去无营销目的、权威媒体大V。</p>\n' +
+          '                                        <p>完全可信（1）：证实为真、无目的、无危害、可靠信息。</p>',
       },
     );
   };

@@ -175,7 +175,7 @@ export async function fetchMission(params) {
 
 }
 export async function Register(params) {
-    console.log(params)
+    console.log(p)
   return request(`http://192.168.100.205:5000/api/register`,
     { method:'POST',
       body:params,}
