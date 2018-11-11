@@ -28,6 +28,11 @@ export async function findCurrent() {
   return request(`http://192.168.100.205:5000/api/currentuser/${(user)}`);
 
 }
+export async function findCurrentAll() {
+  const user = localStorage.getItem('user_id');
+  return request(`http://192.168.100.205:5000/api/currentuserAll/${(user)}`);
+
+}
 
 export async function findCurrentMission() {
   const user = localStorage.getItem('user_id');
@@ -40,7 +45,11 @@ export async function next() {
   return request(`http://192.168.100.205:5000/api/next/${(user)}`);
 
 }
+export async function last() {
+  const user = localStorage.getItem('user_id');
+  return request(`http://192.168.100.205:5000/api/last/${(user)}`);
 
+}
 export async function beginAnno(missionID) {
   const user = localStorage.getItem('user_id');
   const params = {

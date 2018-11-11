@@ -141,7 +141,6 @@ class TableList extends PureComponent {
       type: 'user/fetchUser',
 
     });
-    console.log(this.props)
   }
 
   detail=(e)=>{
@@ -352,11 +351,6 @@ class TableList extends PureComponent {
       <Form onSubmit={this.handleSearch} layout="inline">
         <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
           <Col md={8} sm={24}>
-            <FormItem label="规则名称">
-              {getFieldDecorator('name')(<Input placeholder="请输入"/>)}
-            </FormItem>
-          </Col>
-          <Col md={8} sm={24}>
             <FormItem label="完成情况">
               {getFieldDecorator('status')(
                 <Select placeholder="请选择" style={{ width: '100%' }}>
@@ -375,10 +369,6 @@ class TableList extends PureComponent {
               <Button style={{ marginLeft: 8 }} onClick={this.handleFormReset}>
                 重置
               </Button>
-
-              <a style={{ marginLeft: 8 }} onClick={this.toggleForm}>
-                展开 <Icon type="down"/>
-              </a>
             </span>
           </Col>
         </Row>
@@ -473,12 +463,7 @@ class TableList extends PureComponent {
               </Button>
               {selectedRows.length > 0 && (
                 <span>
-                  <Button onClick={() => this.handleModalVisibleB(true)}>批量操作</Button>
-                  <Dropdown overlay={menu}>
-                    <Button>
-                      更多操作 <Icon type="down"/>
-                    </Button>
-                  </Dropdown>
+                  <Button onClick={() => this.handleModalVisibleB(true)}>分配</Button>
                 </span>
               )}
             </div>

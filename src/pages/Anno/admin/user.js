@@ -48,7 +48,7 @@ class Mission extends Component {
       title: '操作',
       render: (text, record) => (
         <Fragment>
-          <a onClick={() => this.userDetail(record)}>查看详情</a>
+          <a >查看详情</a>
 
         </Fragment>
       ),

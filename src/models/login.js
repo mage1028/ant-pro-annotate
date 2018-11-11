@@ -52,10 +52,12 @@ export default {
     * islogin(_, { put }) {
       const id = localStorage.getItem('user_id');
       if (id){
-        yield 1
+        yield put(routerRedux.push('/annotate/index'))
       }
       else
-        {yield put(routerRedux.push('/user/login'));}
+        {
+          yield put(routerRedux.push('/user/login'));
+        }
     },
 
     * getCaptcha({ payload }, { call }) {

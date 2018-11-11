@@ -44,6 +44,7 @@ export default [
     component: '../layouts/BasicLayout',
     authority: ['admin'],
     routes: [
+      { path: '/admin', redirect: '/admin/index' },
       {
         path: '/admin/index',
         component: './Anno/admin/index',
@@ -107,7 +108,7 @@ export default [
     routes: [
 
       // dashboard
-      { path: '/', redirect: '/annotate/index' },
+      { path: '/', redirect: '/user/login' },
       {
         path: '/dashboard',
         name: 'dashboard',

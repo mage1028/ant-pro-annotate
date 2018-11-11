@@ -83,10 +83,10 @@ class Register extends Component {
           },
         });
         const{register}=this.props
-        console.log(register)
-        if (register.status==1){
+
+        if (register.status===1){
         message.success('注册成功')}
-        if (register.status==0){
+        if (register.status===0){
           message.error('失败')}
 
       }

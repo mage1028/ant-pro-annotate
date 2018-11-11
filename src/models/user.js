@@ -1,4 +1,4 @@
-import { query as queryUsers, queryCurrent ,findUsers,findCurrent,findCurrentMission,next,beginAnno} from '@/services/user';
+import { query as queryUsers, queryCurrent ,findUsers,findCurrent,findCurrentAll,findCurrentMission,next,last,beginAnno} from '@/services/user';
 import { routerRedux } from 'dva/router';
 
 
@@ -84,6 +84,13 @@ export default {
         payload: response,
       });
     },
+    * fetchCurrentAll(_, { call, put }) {
+      const response = yield call(findCurrentAll);
+      yield put({
+        type: 'saveCurrentAccount',
+        payload: response,
+      });
+    },
     * fetchCurrentMission(_, { call, put }) {
 
       const response = yield call(findCurrentMission);
@@ -98,11 +105,25 @@ export default {
 
 
       const response = yield call(findCurrentMission);
-      console.log(response,'data1')
-      const response2 = yield call(findCurrent);
-      console.log(response2,'data2')
+      const response2 = yield call(findCurrentAll);
+      yield put({
+        type: 'saveCurrentAccount',
+        payload: response2,
+      });
+
+      yield put({
+        type: 'saveCurrentMission',
+        payload: response,
+      });
+
+    },
+    * last(_, { call, put }) {
+      // 感觉性能不是很好
+      yield call(last)
 
 
+      const response = yield call(findCurrentMission);
+      const response2 = yield call(findCurrentAll);
       yield put({
         type: 'saveCurrentAccount',
         payload: response2,

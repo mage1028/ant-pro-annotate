@@ -42,7 +42,6 @@ class Mission extends Component {
       sorter: true,
       align: 'right',
       render: val => `${val} `,
-      // mark to display a total number
       needTotal: true,
     },
     {
@@ -79,7 +78,7 @@ class Mission extends Component {
     const { dispatch } = this.props;
 
     dispatch({
-      type: 'user/fetchCurrentUser',
+      type: 'user/fetchCurrentAll',
     });
 
   }
@@ -109,6 +108,8 @@ class Mission extends Component {
 
 
     const {datas}=currentAccount
+
+
     return(
      <Table dataSource={datas} columns={this.columns}/>
 

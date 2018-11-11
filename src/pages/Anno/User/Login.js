@@ -18,6 +18,15 @@ class LoginPage extends Component {
     autoLogin: true,
   };
 
+  componentWillMount() {
+    const {dispatch}=this.props
+    console.log('11')
+    dispatch({
+      type: 'login/islogin',
+    });
+
+}
+
   onTabChange = type => {
     this.setState({ type });
   };

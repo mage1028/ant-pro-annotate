@@ -28,6 +28,10 @@ class App extends Component {
 
   constructor(props) {
     super(props);
+    const {dispatch}=this.props
+    dispatch({
+      type: 'login/islogin',
+    });
 
     console.log(this.props);
     this.state = {
@@ -39,10 +43,17 @@ class App extends Component {
       type: null,
       time: null,
       id: 0,
-      content: '<p>弱危害（0-0.3）：无经济财产人身损失，社会负面很小，波及范围很小，不涉及政治敏感话题。<br>\n' +
-        '                        一般危害（0.3-0.6）：造成经济、财产损失不大，社会负面影响力不大，波及范围小。<br>\n' +
-        '                        强危害（0.6-0.8）：造成经济、财产、人身安全损失很大，社会负面影响力很大，波及范围很大。<br>\n' +
-        '                        极强危害（0.8-1.0）：造成经济、财产、人身安全损失极大，社会负面影响力极大，波及范围极大，涉及政治敏感话题。</p><br>',
+      content: <div>
+        <h5>弱危害（0-0.3）</h5>
+        <p>无经济财产人身损失，社会负面很小，波及范围很小，不涉及政治敏感话题</p>
+        <h5>一般危害（0.3-0.6）</h5>
+        <p>造成经济、财产损失不大，社会负面影响力不大，波及范围小</p>
+        <h5>强危害（0.6-0.8）</h5>
+        <p>造成经济、财产、人身安全损失很大，社会负面影响力很大，波及范围很大</p>
+        <h5>极强危害（0.8-1.0）</h5>
+        <p>造成经济、财产、人身安全损失极大，社会负面影响力极大，波及范围极大，涉及政治敏感话题</p></div>,
+
+      isAnno:null,
     };
 
 
@@ -51,10 +62,6 @@ class App extends Component {
 
   componentDidMount() {
     const { dispatch } = this.props;
-
-    dispatch({
-      type: 'login/islogin',
-    });
 
     dispatch({
       type: 'user/fetchCurrentUser',
@@ -71,6 +78,15 @@ class App extends Component {
     const { dispatch } = this.props;
     dispatch({
       type: 'user/next',
+
+    });
+
+  };
+
+  last = () => {
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'user/last',
 
     });
 
@@ -141,50 +157,58 @@ class App extends Component {
   showDanger = () => {
     this.setState(
       {
-        content: ' <p>弱危害（0-0.3）：无经济财产人身损失，社会负面很小，波及范围很小，不涉及政治敏感话题。<br>\n' +
-          '                        一般危害（0.3-0.6）：造成经济、财产损失不大，社会负面影响力不大，波及范围小。<br>\n' +
-          '                        强危害（0.6-0.8）：造成经济、财产、人身安全损失很大，社会负面影响力很大，波及范围很大。<br>\n' +
-          '                        极强危害（0.8-1.0）：造成经济、财产、人身安全损失极大，社会负面影响力极大，波及范围极大，涉及政治敏感话题。</p><br>',
+        content: <div>
+          <h5>弱危害（0-0.3）</h5>
+          <p>无经济财产人身损失，社会负面很小，波及范围很小，不涉及政治敏感话题</p>
+          <h5>一般危害（0.3-0.6）</h5>
+          <p>造成经济、财产损失不大，社会负面影响力不大，波及范围小</p>
+          <h5>强危害（0.6-0.8）</h5>
+          <p>造成经济、财产、人身安全损失很大，社会负面影响力很大，波及范围很大</p>
+          <h5>极强危害（0.8-1.0）</h5>
+          <p>造成经济、财产、人身安全损失极大，社会负面影响力极大，波及范围极大，涉及政治敏感话题</p></div>,
       },
     );
   };
+
   showAim = () => {
     this.setState(
       {
-        content: ' <p> 善意目的（0-0.2）：中立、正面、积极的信息<br>\n' +
-          '                        营销炒作、吸引流量（0.2-0.5）：博得眼球、标题党<br>\n' +
-          '                        恶意目的（0.5-0.8）：已知信息为假，带有煽动、阴暗、消极的信息。<br>\n' +
-          '                       制造动乱（0.8-1.0）：引起或欲引起动乱<br></p><br>',
-      },
+        content: <div><h5>善意目的（0-0.2）</h5><p>中立、正面、积极的信息</p>
+          <h5>营销炒作、吸引流量（0.2-0.5）</h5><p>博得眼球、标题党</p>
+          <h5>恶意目的（0.5-0.8）</h5><p>已知信息为假，带有煽动、阴暗、消极的信息</p>
+          <h5>制造动乱（0.8-1.0）</h5><p>引起或欲引起动乱</p></div>,}
     );
   };
+
   showConfirm = () => {
     this.setState(
       {
-        content: '<p>\n' +
-          '                        容易证实(0-0.4)：自身借助工具（搜索引擎）容易证实。<br>\n' +
-          '                        难以证实(0.4-0.7)：自身无法证实，需要人为权威机构证实。<br>\n' +
-          '                        无法证实(0.7-1)：自身、人为都无法证实。</p><br>',
+        content: <div><h5>容易证实(0-0.4)</h5><p>自身借助工具（搜索引擎）容易证实</p>
+          <h5>难以证实(0.4-0.7)</h5><p>自身无法证实，需要人为权威机构证实</p>
+          <h5>无法证实(0.7-1)</h5><p>自身、人为都无法证实</p></div>
       },
     );
   };
   showTrust = () => {
     this.setState(
       {
-        content: '  <p>完全不可信（0）：反常识、证实为假</p>\n' +
-          '                                        <p>假大于真（0-0.3）：带有营销性质等明显目的性、让人怀疑的消息</p>\n' +
-          '                                        <p>半真半假（0.3-0.7）：判断不出真假、无明显目的，也不是权威媒体大V发的</p>\n' +
-          '                                        <p>真大于假（0.7-1）：看上去无营销目的、权威媒体大V。</p>\n' +
-          '                                        <p>完全可信（1）：证实为真、无目的、无危害、可靠信息。</p>',
+        content:  <div>
+          <h5>完全不可信（0）</h5><p>反常识、证实为假</p>
+          <h5>假大于真（0-0.3）</h5><p>带有营销性质等明显目的性、让人怀疑的消息</p>
+          <h5>半真半假（0.3-0.7）</h5><p>判断不出真假、无明显目的，也不是权威媒体大V发的</p>
+          <h5>真大于假（0.7-1）</h5><p>看上去无营销目的、权威媒体大V。</p>
+          <h5>完全可信（1）</h5><p>证实为真、无目的、无危害、可靠信息。</p>
+        </div>
       },
     );
   };
   showRely = () => {
     this.setState(
       {
-        content: '<p>可靠（0-0.3）：信息完整、逻辑性强，大V发布，无目的，中立态度，用户感官看上去可靠。<br>\n' +
-          '                        不确定（0.3-0.7）：信息不够完整、逻辑性不强，用户感官不确定可靠性。<br>\n' +
-          '                        不可靠（0.7-1.0）：信息不完整、逻辑性不清晰，反常识，非大V，营销，带有目的，用户感官看上去不可靠。</p><br>',
+        content:<div><h5>可靠（0-0.3）</h5><p>信息完整、逻辑性强，大V发布，无目的，中立态度，用户感官看上去可靠</p>
+          <h5>不确定（0.3-0.7）</h5><p>信息不够完整、逻辑性不强，用户感官不确定可靠性</p>
+          <h5>不可靠（0.7-1.0）</h5><p>信息不完整、逻辑性不清晰，反常识，非大V，营销，带有目的，用户感官看上去不可靠</p>
+        </div>
       },
     );
   };
@@ -234,7 +258,11 @@ class App extends Component {
 
     const { currentMission } = user;
     const percent = ((currentAccount.missionComplete * 100 / currentAccount.missionCount).toFixed(2)).toString();
-    console.log(this.props)
+
+    const color={
+      '已标注':'green',
+      '未标注':'red'
+    }
     const gridStyle = {
       width: '33.3%',
       textAlign: 'center',
@@ -244,9 +272,7 @@ class App extends Component {
       width: '100%',
 
     };
-
-
-    // const {content,reason}=currentMission
+    const test=<Tag>adsds</Tag>
     try{
     return (
       <Layout>
@@ -254,7 +280,7 @@ class App extends Component {
 
         <Row>
           <Col>
-            <Card title="标注文本" extra={currentMission.isAnno}>
+            <Card title="标注文本" extra={<Tag color={color[currentMission.isAnno]}>{currentMission.isAnno}</Tag>}>
               {currentMission.content}
             </Card>
           </Col>
@@ -405,7 +431,7 @@ class App extends Component {
               <Card.Meta title='官方判定' description={currentMission.reason}/>
               <Divider/>
 
-              <div dangerouslySetInnerHTML={{ __html: this.state.content }}/>
+              {this.state.content}
 
             </Card>
           </Col>
@@ -469,6 +495,9 @@ class App extends Component {
           </Col>
         </Row>
         <FooterToolbar>
+          <Button type="primary" onClick={this.last}>
+            上一个
+          </Button>
           <Button type="primary" onClick={this.next}>
             下一个
           </Button>
